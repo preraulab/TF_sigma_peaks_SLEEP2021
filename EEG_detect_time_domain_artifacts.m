@@ -26,8 +26,8 @@ function [artifacts, hf_artifacts, bb_artifacts, high_detrend, broad_detrend] = 
 %   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 %   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %
-%   Last modified 07/17/2020 by Alex
-%% ********************************************************************
+%   Authors: Mingjian He, Michael Prerau 
+%% ***********************************************************************
 %Force column vector for uniformity
 if ~iscolumn(data)
     data=data(:);

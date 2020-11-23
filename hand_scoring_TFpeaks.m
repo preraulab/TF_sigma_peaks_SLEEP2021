@@ -1,4 +1,11 @@
 function hand_scoring_TFpeaks(data, Fs, stages)%, frequency_range, taper_params, window_params, min_NFFT, detrend_opt, plot_on, verbose)
+%
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Michael Prerau
+%% ***********************************************************************
 % (data, Fs)
 % if nargin==0
 % [file, path]=uigetfile({'*.mat','MATLAB Files (*.mat)';'*.edf','EDF Files (*.edf)'});

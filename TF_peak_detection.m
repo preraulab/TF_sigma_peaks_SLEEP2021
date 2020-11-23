@@ -1,4 +1,11 @@
 function [ spindle_table, spectrogram_used, fpeak_proms, fpeak_properties, tpeak_properties, noise_peak_times, lowbw_TFpeaks, fh ] = TF_peak_detection(EEG, Fs, sleep_stages, varargin)
+%
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Mingjian He, Tanya Dimitrov, Michael Prerau
+%% ***********************************************************************
 %% ADD HEADER ***
 TF_peak_tic = tic;
 %% Parse input variables

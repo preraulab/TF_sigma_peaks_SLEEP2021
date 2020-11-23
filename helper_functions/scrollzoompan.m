@@ -30,11 +30,14 @@ function [zslider, pslider, zl, pl]=scrollzoompan(ax,dir,zoom_fcn,pan_fcn, bound
 %     imagesc(peaks(1000));
 %     scrollzoompan(gca,'y');
 %
-%   Copyright 2015 Michael J. Prerau, Ph.D.
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Michael Prerau
 %
 %   Last modified 03/17/2015
-%********************************************************************
-
+%% ***********************************************************************
 %Set default axes to current
 if nargin==0
     ax=gca;

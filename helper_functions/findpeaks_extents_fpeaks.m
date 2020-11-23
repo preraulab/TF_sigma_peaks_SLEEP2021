@@ -7,6 +7,13 @@
 % segments that don't have rounding errors (verified). 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Mingjian He, Michael Prerau
+%% ***********************************************************************
 
 function [Ypk,Xpk,Wpk,Ppk, wxPk] = findpeaks_extents_fpeaks(Yin,varargin)
 %FINDPEAKS Find local peaks in data

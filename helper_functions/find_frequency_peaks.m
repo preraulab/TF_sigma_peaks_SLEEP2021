@@ -14,6 +14,12 @@ function [ fpeak_proms, fpeak_freqs, fpeak_bandwidths, fpeak_bandwidth_bounds, n
 %
 % Usage: [ fproms, ffreq, fwidth, x_fwidth, normalized_spectrogram ] = find_frequency_peaks(spectrogram,stimes,sfreqs,valid_time_inds,'<flag#1>',<arg#1>...<flag#n>',<arg#n>);
 %
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Mingjian He, Tanya Dimitrov, Michael Prerau
+%% ***********************************************************************
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % ##### Declared Inputs: [[[NEEDS UPDATES!!!]]]
 %

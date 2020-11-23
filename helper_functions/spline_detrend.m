@@ -36,10 +36,14 @@
 %
 %   See also visfilt_eeg, eeg_lowpass, eegfilt
 %
-%   Copyright 2011 Michael J. Prerau, Ph.D.
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Mingjian He, Tanya Dimitrov, Michael Prerau
 %
 %   Last modified 02/10/2011
-%********************************************************************
+%% ***********************************************************************
 function detrended=spline_detrend(eegdata, Fs, num_knots, knot_spacing)
 eegdata=eegdata(:)';
 

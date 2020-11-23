@@ -13,6 +13,13 @@ function [ TFpeak_times, noise_peak_times, clustering_idx, clustering_prom_order
 % sacrificing some "true" TF peaks. 
 %
 % Usage: [ spindle_times ] = TF_peak_selection(candidate_signals, candidate_times, '<flag#1>',<arg#1>...'<flag#n>',<arg#n>);
+%
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Mingjian He, Tanya Dimitrov, Michael Prerau
+%% ***********************************************************************
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % ##### Declared Inputs: [[[NEEDS UPDATES!!!]]]
 %           The following variables can be acquired from the function

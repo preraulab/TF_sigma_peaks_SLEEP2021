@@ -23,10 +23,14 @@
 %
 %   See also hline, line
 %
-%   Copyright 2011 Michael J. Prerau, Ph.D.
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Michael Prerau
 %   
 %   Last modified 9/21/2011
-%********************************************************************
+%% ***********************************************************************
 
 function h=hline(yvals, width, color,style)
 if nargin==1

@@ -13,6 +13,12 @@ function [ fpeak_proms, tpeak_proms, tpeak_times, tpeak_durations, tpeak_center_
 % Usage: [ tpeak_proms, tpeak_times, tpeak_widths, fwidth_at_tpeak, sd_ffreq, sd_fwidth, tpeak_intervals ] = ...
 %           find_time_peaks(prominence_curve, ffreq, fwidth, stimes, stages, stage_times, '<flag#1>',<arg#1>...'<flag#n>',<arg#n>);
 %
+%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Authors: Mingjian He, Tanya Dimitrov, Michael Prerau
+%% ***********************************************************************
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % ##### Declared Inputs: [[[NEEDS UPDATES!!!]]]
 %
