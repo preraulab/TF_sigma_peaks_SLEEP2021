@@ -91,7 +91,8 @@ else
     else
         fh = [];
     end
-    
+    df = datenum([0 0 0 0 0 1]);
+
 end
 
 %%
@@ -216,7 +217,8 @@ parse(p,EEG,Fs,sleep_stages,varargin{:});
 
 % instantiate outputs
 input_arguments = struct2cell(p.Results);
-input_flags = fieldnames(p.Results);
+input_flags = fieldnames(p.Results);df = datenum([0 0 0 0 0 1]);
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %Additional variable processing and modification of outputs
@@ -320,10 +322,16 @@ end
 function [ fh ] = TF_peak_plot(spect, stimes, sfreqs, stages_in_stimes, spindle_table)
     
     fh = figure;
-    ax = figdesign(5,1, 'type','usletter', 'margins', [.05 .1 .05 .05 .03], 'merge',{2:5});
+    ax = figdesign(5,1, 'type','usletter', 'margins', [.05 .15 .05 .05 .03], 'merge',{2:5});
     set(fh, 'units','normalized','position',[0 0 1 1]);
     linkaxes(ax,'x');
+    h_timetextstart = uicontrol('style', 'text', 'String', 'Window: ---', 'units', 'normalized', ...
+                           'Position', [0.0051    0.9677    0.17    0.0305], 'BackgroundColor', [1 1 1], ...
+                           'HorizontalAlignment', 'left');
+    l_timetext = addlistener(ax(2), 'XLim', 'PostSet', @(src,evnt)update_time_range(ax(2), h_timetextstart));
     
+                   
+                       
     axes(ax(1));
     hypnoplot(stimes, stages_in_stimes);
     title('Hypnogram');
@@ -337,6 +345,7 @@ function [ fh ] = TF_peak_plot(spect, stimes, sfreqs, stages_in_stimes, spindle_
     title('Spectrogram');
     xlabel('Time (sec)');
     ylabel('Frequency (Hz)');
+    set(gca, 'xtick', []);
     set(gca, 'FontSize', 16)
     
     hold on;
@@ -346,10 +355,21 @@ function [ fh ] = TF_peak_plot(spect, stimes, sfreqs, stages_in_stimes, spindle_
         r(ii) = rectangle('Position', pos,'LineStyle',':','EdgeColor','k','LineWidth',2);
     end
     set(fh,'KeyPressFcn',@(src,event)handle_keys(event, r)); 
+    update_time_range(ax(2), h_timetextstart);
     scrollzoompan;
     msgbox('Press ''v'' to toggle visibility of TF-Peak bounding boxes');
     
 end
+
+function update_time_range(ax, h_timetext)
+
+time_range = xlim(ax);
+df = datenum([0 0 0 0 0 1]);
+h_timetext.String = ['Window: ', datestr(df*time_range(1), 'HH:MM:SS'), ' - ', ...
+                     datestr(df*time_range(2), 'HH:MM:SS')];
+
+end
+
 
 function [ spindle_table ] = create_output_tbl(stimes, stages_in_stimes, TFpeak_times, clustering_idx, clustering_prom_order, tpeak_center_times, tpeak_central_frequencies, tpeak_bandwidth_bounds, tpeak_proms)
 
