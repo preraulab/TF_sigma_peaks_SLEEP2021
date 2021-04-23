@@ -6,7 +6,7 @@
 * [General Information](#general-information)
 * [Hand Scoreing TFpeaks](#hand-scoring-tfpeaks)
 * [TFpeak Detection](#tfpeak-detection)
-* [Multitaper Spectrogram](#multitaper_spectrogram)
+* [Multitaper Spectrogram](#multitaper-spectrogram )
 * [Artifact Detection](#artifact-detection)
 * [Citations](#citations)
 * [Status](#status)
