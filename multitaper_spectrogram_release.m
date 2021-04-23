@@ -8,7 +8,7 @@ function [mt_spectrogram,stimes,sfreqs] = multitaper_spectrogram_release(varargi
 %   [spect,stimes,sfreqs] = multitaper_spectrogram(data, Fs, frequency_range, taper_params, window_params, min_NFFT, detrend_opt, plot_on, verbose)
 %
 %   Input:
-%   data: 1 x <number of samples> vector - time series data-- required
+%   data: 1 x <number of samples> vector - time series data -- required
 %   Fs: double - sampling frequency in Hz  -- required
 %   frequency_range: 1x2 vector - [<min frequency>, <max frequency>] (default: [0 nyquist])
 %   taper_params: 1x2 vector - [<time-halfbandwidth product>, <number of tapers>] (default: [5 9])

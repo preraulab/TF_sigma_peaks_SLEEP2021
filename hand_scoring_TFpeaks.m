@@ -1,63 +1,43 @@
-function hand_scoring_TFpeaks(data, Fs, stages)%, frequency_range, taper_params, window_params, min_NFFT, detrend_opt, plot_on, verbose)
+function hand_scoring_TFpeaks(data, Fs, stages)
+%TFSIGMA PEAK HANDSCORING - Plot and handscore TF peaks on multitaper spectrograms     
+%   
+%   This is a lite-version of TFsigma peak hand scoring function used to
+%   manually identify TFsigma peaks on multitaper spectrograms. 
 %
+%   Usage: 
+%       hand_scoring_TFpeaks(data, Fs, stages)
+%   
+%   Inputs:
+%       data:   1 x <number of samples> vector - time series data -- required
+%       Fs:     double - sampling frequency in Hz  -- required
+%       stages: 1 x <number of stage samples> vector - vector of scored
+%               sleep stages. The interval can be different from that of
+%               data, but it should start and end matching the data vector.  
+%
+%   Hotkeys:
+%       There are several useful hotkeys to facilitate scoring once the
+%       multitaper spectrogram is plotted: 
+%   
+%       backspace/delete: delete selected bounding box
+%       space: advance forward in time window (with 10% overlapping)
+%       s: after pressing s, left-clicking on the spectrogram will begin
+%       marking the bounding box as a TFpeak
+%       u: after pressing u, left-clicking on the spectrogram will begin
+%       marking the bounding box as an unknown event
+%       p: call the zooming panel
+%       c: call the colorscale adjustment panel
+%       
+%   Labels:
+%       Saving and loading of labelled events can be done using the Labels
+%       tab on the toolbar menu. Select the corresponding menu action to
+%       save or load handscored events. 
+%   
 %   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
 %   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 %   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %
 %   Authors: Michael Prerau
 %% ***********************************************************************
-% (data, Fs)
-% if nargin==0
-% [file, path]=uigetfile({'*.mat','MATLAB Files (*.mat)';'*.edf','EDF Files (*.edf)'});
-% if ~path
-%     return;
-% end
-% 
-% [path,name,ext] = fileparts(fullfile(path,file));
-% 
-% switch lower(ext)
-%     case('.mat')
-%         %Get matfile variables
-%         m = matfile(fullfile(path,name));
-%         details = whos(m);
-%         variable_names = {details.name};
-%         
-%         %Get the data variable
-%         [data_var_ind, ok] = listdlg('liststring',variable_names, 'promptstring', 'Select Data Variable','selectionmode','single');
-%         
-%         if ~ok
-%             return;
-%         end
-%         data = m.(variable_names{data_var_ind});
-%         
-%         %Make sure we have the correct dimensions
-%         data_dims = size(data);
-%         if data_dims(1) > data_dims(2)
-%             data = data';
-%         end
-%         
-%         %Extract the number of channels
-%         num_channels = min(data_dims);
-%         
-%         %Get Fs
-%         [Fs_var_ind, ok] = listdlg('liststring',variable_names, 'promptstring', 'Select Sampling Frequency Variable','selectionmode','single');
-%         
-%         if ~ok
-%             return;
-%         end
-%         
-%         Fs = m.(variable_names{Fs_var_ind});
-%         
-%         %Select the channel to view
-%         [channel_num, ok] = listdlg('liststring',string(1:num_channels), 'promptstring', 'Select the Channel Number','selectionmode','single');
-%         
-%         if ~ok
-%             return;
-%         end
-% end
-% end
-
-
 frequency_range = [.5 25];
 taper_params = [2 3];
 min_NFFT = 2^10;
@@ -84,7 +64,7 @@ xbounds=stimes([1 end]);
 ybounds=sfreqs([1 end]);
 climscale;
 colormap jet;
-hline(9);%Tanya added these 3/27/20
+hline(9);
 hline(17);
 
 %Plot time domain
@@ -122,16 +102,17 @@ handles.hfig = gcf;
 handles.ax = ax;
 
 guidata(gcf, handles);
+end
 
 %************************************************************
 %                      HANDLE HOTKEYS
 %************************************************************
-function handle_keys(event, em)
 
+function handle_keys(event, em)
 switch event.Key
     case {'backspace','delete'}
         em.delete_selected;
-    case {'space'} %edited by Tanya 3/27/20
+    case {'space'}
         cur_window = xlim;
         cur_size = diff(xlim);
         xlim([cur_window(2)-cur_size*0.1, cur_window(2)+cur_size*0.9]);
@@ -142,13 +123,14 @@ switch lower(event.Character)
     case 's'
         em.mark_event(1);
     case 'u'
-        em.mark_event(2);  
+        em.mark_event(2);
     case 'p'
         zoom_popout();
     case 'c'
         handles = guidata(gcf);
         axes(handles.ax(2));
         clims;
+end
 end
 
 function zoom_popout()
@@ -157,7 +139,6 @@ xl = xlim(handles.ax(2));
 
 stimes = handles.stimes;
 sfreqs = handles.sfreqs;
-
 sinds = stimes>xl(1) & stimes<xl(2);
 
 figure
@@ -174,5 +155,4 @@ camlight right
 material dull
 lighting phong
 shading interp
-
-
+end
