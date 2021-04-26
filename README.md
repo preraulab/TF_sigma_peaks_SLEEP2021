@@ -98,7 +98,7 @@ Usage:
 * **MT_detrend** - char specifying the method of detrending for each window of data in the multitaper spectrogram calculation. Possible choices are: 'linear', 'constant', and 'off'. (optional keyword argument - default='constant')
 * **MT_weighting** - char specifying the method of DPSS taper weighting during the multitaper spectrogram caluclation. Possible choices are: 'unity', 'eigen', and 'adapt'. (optional keyword argument - default='unity')
  
-### TFpeak Detection Examples
+### TFpeak Detection Example
 The following code demostrates the usage of TF_peak_detect - 
 ```
 load('example_data') % load the data 
