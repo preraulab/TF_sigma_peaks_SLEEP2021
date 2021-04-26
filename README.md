@@ -138,6 +138,17 @@ Usage:
 
 [artifacts, hf_artifacts, bb_artifacts, high_detrend, broad_detrend] = EEG_detect_time_domain_artifacts(data, Fs, method, hf_crit, hf_pass, bb_crit, bb_pass, smooth_duration, verbose, histogram_plot)
 ```
+### Parameter Descriptions
+* **data** - 1 x <number of samples> vector - time series data (required)
+* **Fs** - double - sampling frequency in Hz (required)
+* **method** - char 'std' to use iterative method (default) or a strict threshold on 'MAD',defined as K*MEDIAN(ABS(A-MEDIAN(A)))
+* **hf_crit** - double - high frequency criterion - number of stds/MAD above the mean to remove (default: 4)
+* **hf_pass** - double - high frequency pass band - frequency for high pass filter in Hz (default: 25 Hz)
+* **bb_crit** - double - broadband criterion - number of stds/MAD above the mean to remove (default: 4)
+* **bb_pass** - double - broadband pass band - frequency for high pass filter in Hz (default: .1 Hz)
+* **smooth_duration** - double - time (in seconds) to smooth the time series (default: 2 seconds)
+* **verbose** - logical - verbose output (default: false)
+* **histogram_plot** - logical - plot histograms for debugging (default: false)
 
 
 <br/>
