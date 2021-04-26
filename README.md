@@ -1,5 +1,5 @@
 # TF_sigma_peaks_SLEEP2021
-### This is the repository for the code referenced in: [Dimitrov T, He M, Stickgold R, Prerau MJ. Sleep spindles comprise a subset of a broader class of electroencephalogram events. Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf)
+### This is the repository for the code referenced in: Dimitrov T, He M, Stickgold R, Prerau MJ. [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.
 --- 
 
 ## Table of Contents
