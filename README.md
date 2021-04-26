@@ -10,11 +10,16 @@
 * [Artifact Detection](#artifact-detection)
 * [Citations](#citations)
 * [Status](#status)
+* [References](#references)
 <br/>
 <br/>
 
 ## General Information
 The code in this repository is companion to the paper [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). 
+<br/>
+
+One of the most prominent waveform patterns observed in the sleep EEG is the spindle, originally observed as waxing-waning 14 Hz oscillatory bursts <sup>1</sup>. Spindles have garnered substantial attention through numerous studies linking spindle activity to memory consolidation and neural plasticity during sleep <sup>2,3</sup>, as wellas recent studies associating deviations in spindle activity and morphology with aging <sup>4</sup>, Alzheimer’s disease <sup>5</sup>, epilepsy <sup>6</sup>, schizophrenia <sup>7</sup>, and autism <sup>8</sup>. Since 1935, spindles have largely been identified by visual inspection, and more recent automated spindle detection methods <sup>9</sup> are built to approximate human scoring rather than trying to identify objective markers of the neurophysiological phenomenon underlying spindles. The problem with this approach is that spindles are easily obfuscated by other frequency activity in the EEG signal, making visual identification exceptionally difficult and highly variable between scorers. Time-frequency analysis is well suited to solve this problem because it can  disambiguate the dynamics of simultaneously occurring time-varying oscillatory activity. The TFpeaks algorithm systematically characterizes spindle activity from first principles using time-frequency phenomenology as the basis of observation, allowing us to move towards a more objective and evidence-based understanding of the underlying activity.
+
 <br/>
 
 <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind"
@@ -46,7 +51,6 @@ The follow interface will appear and TFpeak/event scoring can begin -
 
 To save or load labeled TFpeaks/events, select the "Markers" dropdown from the toolbar and click "Save Events" or "Load Events"
 
-To use EEG data from an EDF file, load in the data using the blockEdfLoad function (link). 
 <br/>
 
 ## TFpeak Detection
@@ -87,4 +91,15 @@ which should be cited for academic use of this code.
 ## Status 
 All implementations are complete and functional but may receive updates occasionally
 <br/>
+
+## References
+1. Loomis AL, Harvey EN, Hobart GA. Cerebral states during sleep, as studied by human brain potentials. J Exp Psychol. 1937;21(2):127
+2. Diekelmann S, Born J. The memory function of sleep. Nat Rev Neurosci. 2010;11(2):114-126. 
+3. Fogel SM, Smith CT. The function of the sleep spindle: a physiological index of intelligence and a mechanism for sleep-dependent memory consolidation. Neurosci Biobehav Rev. 2011;35(5):1154-1165.
+4. Helfrich RF, Mander BA, Jagust WJ, Knight RT, Walker MP. Old brains come uncoupled in sleep: slow wave-spindle synchrony, brain atrophy, and forgetting. Neuron. 2018;97(1):221-230.
+5. Gorgoni M, Lauri G, Truglia I, et al. Parietal fast sleep spindle density decrease in Alzheimer’s disease and amnesic mild cognitive impairment. Neural Plast. 2016;2016.
+6.  Myatchin I, Lagae L. Sleep spindle abnormalities in children with generalized spike-wave discharges. Pediatr Neurol. 2007;36(2):106-111.
+7.  Manoach DS, Pan JQ, Purcell SM, Stickgold R. Reduced sleep spindles in schizophrenia: a treatable endophenotype that links risk genes to impaired cognition? Biol Psychiatry. 2016;80(8):599-608.
+8.  Limoges E, Mottron L, Bolduc C, Berthiaume C, Godbout R. Atypical sleep architecture and the autism phenotype. Brain. 2005;128(5):1049-1061.
+9.  Warby SC, Wendt SL, Welinder P, et al. Sleep-spindle detection: crowdsourcing and evaluating performance of experts, non-experts and automated methods. Nat Methods. 2014;11(4):385.
 
