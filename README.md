@@ -54,7 +54,7 @@ To save or load labeled TFpeaks/events, select the "Markers" dropdown from the t
 <br/>
 
 ## TFpeak Detection
-The TF_peak_detection function can be used to 
+The TF_peak_detection function uses multitaper spectrogram to identify time-frequency domain peaks. 
 
 Usage:
 ```
@@ -69,6 +69,35 @@ Usage:
 'MT_window', MT_window, 'MT_min_NFFT', MT_min_NFFT, 'MT_detrend', MT_detrend)
 ```
 
+### Parameter Descriptions
+* **EEG** - 1D vector of signal data (required)
+* **Fs** - sampling frequency of EEG data (Hz) (required)
+* **sleep_stages** - n x 2 matrix where the 1st column is the timestamps of sleep stage changes and the 2nd column should be the new sleep stage at that timestamp. The stage coding in column 2 must be - WAKE=5, REM=4, NREM1=3, NREM2=2, NREM3=1, UNDEFINED=0 (required)
+<br/>
+
+* **detection stages**: vector of sleep stages in which spindles should be detected. The stage coding is - WAKE=5, REM=4, NREM1=3, NREM2=2, NREM3=1, UNDEFINED=0.  (optional keyword argument - default=[1,2,3])
+* **to_plot** - boolean to plot hypnoplot, spectrogram, and bounding boxes around detected spindles on the spectrogram (optional keyword argument - default=true).
+* **verbose** - boolean to output informative text to the Matlab console (optional keywork argument - default=true)
+* **spindle_freq_range** -  2 element vector specifying lower and upper frequency bounds in which spindles can be found (optional keywork argument - default=[0, Fs/2])
+* **extract_property** - boolean  (optional keywork argument - default=false) 
+* **artifact_detect** - boolean to perform artifact detection on EEG before spindle detection. Note that segments identified as artifacts have their stages changed to WAKE (5). (optional keyword argument - default=true)
+* **peak_freq_range** - 2 element vector specifying range of frequencies to look for peak prominence values within (optional keyword argument - default=[9,17])
+* **find_freq_range** - 2 element vector (optional keyword argument - default=[max(0, peak_freq_range(1)-spectral_resol), min(Fs/2, peak_freq_range(2)+spectral_resol])
+* **in_db** - boolean to convert spectrogram from power to dB (optional keyword argument - default=false)
+* **smooth_Hz** - float in Hz to specify smoothing of each slice of spectrum before peak finding (optional keyword argument - default=0)
+* **smooth_sec** - float in seconds to specify window over which average smoothing of time-domain prominance curve occurs (optional keyword argument - default=0.3)
+* **MinPeakDistance_sec** - float in seconds to spefify the minimum peak width required for a peak to be detected (optional keywork argument - default=0.3)
+* **detection_method** - char specifying the method of separating noise peaks from signal peaks. Options are 'kmeans' and 'threshold' (optional keyword argument - default='kmeans')
+* **bandwidth_cut** - (optional keyword argument - default=true)
+* **num_clusters** - integer to specify the number of clusters used in kmeans clustering to cluster noise peaks from signal peaks. Note that only the cluster with the highest peak prominance will be selected as signal and the other clusters will be specfied as noise. (optional keyword argument - default=2)
+* **threshold_percentile** - float between 0 and 100 specifying the percentile cutoff of candidate TFpeaks prominance values to use in distiguishing between noise and signal TFpeaks. Used only if detection_method is 'threshold'. (optional ketwork argument - default=75)
+* **MT_freq_max** - float in Hz specifying the maximum frequency to use when computing the multitaper spectrogram. (optional keyword argument - default=30)
+* **MT_taper** - 2 element vector specifying the multitaper spectrogram DPSS taper parameters. The 1st element is the desired time-halfbandwidth product and the 2nd element is the desired number of tapers. (optional keyword argument - default=[2,3])
+* **MT_window** - 2 element vector spevifying the multitaper spectrogram time window parameters. The 1st element is the window size in seconds and the 2nd element is the step size in seconds (optional keywork argument - default=[1, 0.005])
+* **MT_min_NFFT** - integer specifying the minimum allowable NFFT size, adds zero padding for interpolation. (optional keyword argument - default=2<sup>10</sup>)
+* **MT_detrend** - char specifying the method of detrending for each window of data in the multitaper spectrogram calculation. Possible choices are: 'linear', 'constant', and 'off'. (optional keyword argument - default='constant')
+* **MT_weighting** - char specifying the method of DPSS taper weighting during the multitaper spectrogram caluclation. Possible choices are: 'unity', 'eigen', and 'adapt'. (optional keyword argument - default='unity')
+ 
 ### TFpeak Detection Examples
 
 <br/>
