@@ -28,7 +28,7 @@ Herein, we provide code for our automated detection of TFσ peaks, as well as th
 <br/>
 | <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind" width="500" height="250" />| 
 |:--:| 
-| <sup><sub>**Spindles are a subset of TFσ peaks.** <br/>Source: Dimitrov et. al <sup>10</sup></sup></sub> |
+| <sup><sub>**Spindles are a subset of TFσ peaks. Traditionaly scored spindles are represented as sigma range (10-16Hz) time-frequency peaks in the spectrogram (TFσ peaks). While scored spindles correspond directly to TFσ peaks, there are many clear TFσ peaks that are not scored as spindles.** Source: Dimitrov et. al <sup>10</sup></sup></sub> |
 
 <br/>
 <br/>
