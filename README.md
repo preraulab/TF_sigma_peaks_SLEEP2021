@@ -5,7 +5,7 @@
 ## Table of Contents
 * [General Information](#general-information)
 * [Hand Scoring TFpeaks](#hand-scoring-tfpeaks)
-* [TFsigma peak Detection](#tfpeak-detection)
+* [TFσ peak Detection](#tfpeak-detection)
 * [Algorithm Description](#algorithm-description)
 * [Multitaper Spectrogram](#multitaper-spectrogram )
 * [Artifact Detection](#artifact-detection)
@@ -32,7 +32,7 @@ One of the most prominent waveform patterns observed in the sleep EEG is the spi
 <br/>
 
 
-## Hand Scoring TF\sigma peaks
+## Hand Scoring TFσ peaks
 The hand_scoring_tfpeaks function can be used to manually identify TFsigma peaks on multitaper spectrograms. Running this function on EEG data opens an interface with the data spectrogram, hypnogram, and time-series signal. This interface allows, zooming, colorscale adjustment, TFpeak/event marking (bounding box creation), and saving of the TFpeak/event labels. See the function docstring to explore the hotkeys for further details.
 
 Usage:
@@ -40,7 +40,7 @@ Usage:
 hand_scoring_tfpeaks(data, Fs, staging)
 ```
 
-### Hand Scoring TFpeaks Example
+### Hand Scoring TFσ peaks Example
 The following code shows how to load in test EEG data and run the hand_scoring_tfpeaks function - 
 ```
 load('example_data/example_data.mat')  % loads in example data variables EEG, Fs, night, stage_times, stages, subject_name, t
@@ -59,7 +59,7 @@ To save or load labeled TFpeaks/events, select the "Markers" dropdown from the t
 
 
 
-## TFpeak Detection
+## TFσ peak Detection
 The TF_peak_detection function uses multitaper spectrogram to identify time-frequency domain peaks. 
 
 Usage:
