@@ -28,8 +28,7 @@ Herein, we provide code for our automated detection of TFσ peaks, as well as th
 <br/>
 | <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind" width="500" height="250" />| 
 |:--:| 
-| <sup><sub>**Spindles are a subset of TFσ peaks.** <br/>Source: Dimitrov T, He M, Stickgold R, Prerau MJ. Sleep spindles comprise a subset of a broader class of electroencephalogram events. Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311</sup></sub> |
-
+| <sup><sub>**Spindles are a subset of TFσ peaks.** <br/>Source: Dimitrov et. al <sup>10</sup></sup></sub> |
 
 <br/>
 <br/>
@@ -210,4 +209,5 @@ All implementations are complete and functional.
 7.  Manoach DS, Pan JQ, Purcell SM, Stickgold R. Reduced sleep spindles in schizophrenia: a treatable endophenotype that links risk genes to impaired cognition? Biol Psychiatry. 2016;80(8):599-608.
 8.  Limoges E, Mottron L, Bolduc C, Berthiaume C, Godbout R. Atypical sleep architecture and the autism phenotype. Brain. 2005;128(5):1049-1061.
 9.  Warby SC, Wendt SL, Welinder P, et al. Sleep-spindle detection: crowdsourcing and evaluating performance of experts, non-experts and automated methods. Nat Methods. 2014;11(4):385.
+10. Dimitrov T, He M, Stickgold R, Prerau MJ. [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.
 
