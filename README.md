@@ -15,15 +15,16 @@
 * [References](#references)
 
 ## General Information
-The code in this repository is companion to the paper [Sleep spindles comprise a subset of a broader class of electroencephalogram events (Sleep 2021)](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). 
-<br/>
+The code in this repository is companion to the paper:
+> Dimitrov T, He M, Stickgold R, Prerau MJ. [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.
 
-One of the most prominent waveform patterns observed in the sleep EEG is the spindle, originally observed as waxing-waning 14 Hz oscillatory bursts <sup>1</sup>. Spindles have garnered substantial attention through numerous studies linking spindle activity to memory consolidation and neural plasticity during sleep <sup>2,3</sup>, as wellas recent studies associating deviations in spindle activity and morphology with aging <sup>4</sup>, Alzheimer’s disease <sup>5</sup>, epilepsy <sup>6</sup>, schizophrenia <sup>7</sup>, and autism <sup>8</sup>. 
+One of the most prominent waveform patterns observed in the sleep EEG is the spindle, originally observed as waxing-waning 14 Hz oscillatory bursts in the EEG<sup>1</sup>. Spindles have garnered substantial attention through numerous studies linking spindle activity to memory consolidation and neural plasticity during sleep <sup>2,3</sup>, as wellas recent studies associating deviations in spindle activity and morphology with aging <sup>4</sup>, Alzheimer’s disease <sup>5</sup>, epilepsy <sup>6</sup>, schizophrenia <sup>7</sup>, and autism <sup>8</sup>. 
 
-Since 1935, spindles have largely been identified by visual inspection and more recent automated spindle detection methods <sup>9</sup> are built to approximate human scoring rather than trying to identify objective markers of the neurophysiological phenomenon underlying spindles. The problem with this approach is that spindles are easily obfuscated by other frequency activity in the EEG signal, making visual identification exceptionally difficult and highly variable between scorers. 
+Since 1935, spindles have largely been identified by visual inspection and more recent automated spindle detection methods <sup>9</sup> are built to approximate human scoring rather than trying to identify objective markers of the neurophysiological phenomenon underlying spindles. A primary challeng with this approach is that spindles are easily obfuscated by other frequency activity in the EEG signal, making visual identification exceptionally difficult and highly variable between scorers. 
 
-Time-frequency analysis is well suited to solve this problem because it can disambiguate the dynamics of simultaneously occurring time-varying oscillatory activity. TFpeaks systematically characterizes spindle activity from first principles using time-frequency phenomenology as the basis of observation, allowing us to move towards a more objective and evidence-based understanding of the underlying activity.
+Time-frequency analysis is well suited to solve this problem because it can disambiguate the dynamics of simultaneously occurring time-varying oscillatory activity. In particular, any short burst of oscillatory activity will appear as a peak in the time-frequency domain. In our paper, we define time-frequency peaks in the sigma range (10-16 Hz), which we term **TFσ peaks**. We show that traditional spindle activity is a non-separable subset of TFσ peaks, and that TFσ peaks more robustly characterize the underlying neurophysiological activity, with significantly greater night-to-night stability relative to spindles.
 
+Herein, we provide code for our automated detection of TFσ peaks, as well as the code to hand-score TFσ peaks from the spectrogram.
 <br/>
 
 <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind"
