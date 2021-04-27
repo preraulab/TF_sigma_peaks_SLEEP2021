@@ -27,8 +27,8 @@ Time-frequency analysis is well suited to solve this problem because it can disa
 Herein, we provide code for our automated detection of TFσ peaks, as well as the code to hand-score TFσ peaks from the spectrogram.
 <br/>
 
-<img align="center" src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind"
-	 width="500" height="250" />
+<div style="text-align:center"><img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind"
+	 width="500" height="250" /></div>
 <br/>
 <sup><sub>Dimitrov T, He M, Stickgold R, Prerau MJ. Sleep spindles comprise a subset of a broader class of electroencephalogram events. Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.</sup></sub>
 
