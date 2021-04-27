@@ -14,7 +14,6 @@
 * [Status](#status)
 * [References](#references)
 <br/>
-<br/>
 
 ## General Information
 The code in this repository is companion to the paper [Sleep spindles comprise a subset of a broader class of electroencephalogram events (Sleep 2021)](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). 
