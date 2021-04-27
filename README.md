@@ -13,7 +13,6 @@
 * [Citations](#citations)
 * [Status](#status)
 * [References](#references)
-<br/>
 
 ## General Information
 The code in this repository is companion to the paper [Sleep spindles comprise a subset of a broader class of electroencephalogram events (Sleep 2021)](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). 
@@ -59,9 +58,6 @@ The follow interface will appear and TFpeak/event scoring can begin -
 To save or load labeled TFpeaks/events, select the "Markers" dropdown from the toolbar and click "Save Events" or "Load Events"
 
 <br/>
-<br/>
-
-
 
 ## TFσ peak Detection
 The TF_peak_detection function uses multitaper spectrogram to identify time-frequency domain peaks. 
