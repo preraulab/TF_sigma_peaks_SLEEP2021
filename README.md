@@ -97,7 +97,7 @@ Usage:
 * **detection stages**: vector of sleep stages in which spindles should be detected. The stage coding is - WAKE=5, REM=4, NREM1=3, NREM2=2, NREM3=1, UNDEFINED=0.  (optional keyword argument - default=[1,2,3])
 * **to_plot** - logical to plot hypnoplot, spectrogram, and bounding boxes around detected spindles on the spectrogram (optional keyword argument - default=true).
 * **verbose** - logical to output informative text to the Matlab console (optional keywork argument - default=true)
-* **spindle_freq_range** -  2 element vector specifying lower and upper frequency bounds in which spindles can be found (optional keywork argument - default=[0, Fs/2])
+* **spindle_freq_range** -  2 element vector specifying lower and upper frequency bounds in which TFpeaks can be found (optional keywork argument - default=[0, Fs/2])
 * **extract_property** - logical to output various properties of all TFpeaks found before separating into noise and signal TFpeaks. Note that if this argument is true, the process will stop before separating TFpeaks into noise and signal. (optional keywork argument - default=false) 
 * **artifact_detect** - logical to perform artifact detection on EEG before spindle detection. Note that segments identified as artifacts have their stages changed to WAKE (5). (optional keyword argument - default=true)
 * **peak_freq_range** - 2 element vector specifying range of frequencies to look for peak prominence values within (optional keyword argument - default=[9,17])
