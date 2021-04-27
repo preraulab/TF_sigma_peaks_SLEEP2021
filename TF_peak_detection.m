@@ -271,23 +271,11 @@ spectrogram_parameters.detrend = MT_detrend;
 spectrogram_parameters.ploton = false;
 spectrogram_parameters.verbose = verbose;
 
-% select which version of multitaper_spectrogram to run
-if exist('multitaper_spectrogram_mex', 'file') == 2
-    multitaper_version = @multitaper_spectrogram_mex;
-elseif exist('multitaper_spectrogram', 'file') == 2
-    multitaper_version = @multitaper_spectrogram;
-elseif exist('multitaper_spectrogram_release', 'file') == 2
-    multitaper_version = @multitaper_spectrogram_release;
-else
-    error('Cannot locate multitaper_spectrogram functions.')
-end
-
-[spect,stimes,sfreqs]=multitaper_version(single(EEG'), Fs,...
+[spect,stimes,sfreqs]=multitaper_spectrogram_release(single(EEG'), Fs,...
     [0 min([Fs/2 spectrogram_parameters.frequency_max])], ...
     spectrogram_parameters.taper_params,spectrogram_parameters.window_params, ...
     spectrogram_parameters.min_NFFT, spectrogram_parameters.detrend, ...
     spectrogram_parameters.ploton, spectrogram_parameters.verbose);
-
 end
 
 function [ detection_inds, normalization_inds, stages_in_stimes ] = select_time_indices(stages_input, EEG, Fs, stimes, normalization_stages, detection_stages, ifartifact)
