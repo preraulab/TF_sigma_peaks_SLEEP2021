@@ -52,6 +52,11 @@ hand_scoring_tfpeaks(data, Fs, staging)
 ### Hand Scoring TFσ peaks Example
 The following code shows how to load in test EEG data and run the hand_scoring_tfpeaks function - 
 ```
+%Make sure to start parallel pool if available
+if license('test','distrib_computing_toolbox')
+	gcp;
+end
+
 load('example_data/example_data.mat')  % loads in example data variables EEG, Fs, night, stage_times, stages, subject_name, t
 hand_scoring_tfpeaks(EEG, Fs, staging)
 ```
@@ -105,7 +110,12 @@ Usage:
  
 ### TFσ peak Detection Example
 The following code demostrates the usage of TF_peak_detect - 
-```
+``
+%Make sure to start parallel pool if available
+if license('test','distrib_computing_toolbox')
+	gcp;
+end
+
 load('example_data') % load the data 
 
 % run the TF_peak_detection wrapper function to detect TF peaks during
