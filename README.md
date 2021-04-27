@@ -57,8 +57,8 @@ hand_scoring_tfpeaks(EEG, Fs, staging)
 ```
 The follow interface will appear and TFpeak/event scoring can begin - 
 <br/>
-<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
-	 width="600" height="300" />
+|<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
+	 width="600" height="300" />|
 
 
 To save or load labeled TFpeaks/events, select the "Markers" dropdown from the toolbar and click "Save Events" or "Load Events"
@@ -117,8 +117,8 @@ load('example_data') % load the data
 ```
 Running the code should produce the following plot showing the data segment hypnogram, spectrogram, and bounding boxes indicating TFpeaks - 
 
-<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_paper_example.png" alt="spind"
-	 width="600" height="350" />
+|<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_paper_example.png" alt="spind"
+	 width="600" height="350" />|
 <br/>
 <br/>
 
@@ -162,9 +162,9 @@ Prior to k-means clustering, we excluded peaks with durations shorter than 0.3 s
 The multitaper_spectrogram_release function is used by TF_peak_detection to break down the EEG signal into the time-frequency domain. More information on the multitaper spectrogram and the latest release of the function can be found [here](https://github.com/preraulab/multitaper_toolbox)
 
 The default spectrogram parameters used by TF_peak_detection are as follow:
-* frequency_range = [0, 30]
+* frequency_range = [0, 30]  % Hz
 * taper_params = [2, 3]
-* window_params = [1, 0.05]
+* window_params = [1, 0.05]  % Seconds
 * min_NFFT = 2^10
 * detrend_opt = 'constant'
 
