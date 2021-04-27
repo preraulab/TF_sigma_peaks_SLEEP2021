@@ -51,7 +51,7 @@ hand_scoring_tfpeaks(EEG, Fs, staging)
 The follow interface will appear and TFpeak/event scoring can begin - 
 <br/>
 <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
-	 width="500" height="250" />
+	 width="600" height="300" />
 
 
 To save or load labeled TFpeaks/events, select the "Markers" dropdown from the toolbar and click "Save Events" or "Load Events"
@@ -111,7 +111,7 @@ load('example_data') % load the data
 Running the code should produce the following plot showing the data segment hypnogram, spectrogram, and bounding boxes indicating TFpeaks - 
 
 <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_paper_example.png" alt="spind"
-	 width="500" height="250" />
+	 width="600" height="350" />
 <br/>
 <br/>
 
