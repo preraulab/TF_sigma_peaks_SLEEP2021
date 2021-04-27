@@ -5,7 +5,7 @@
 
 ## Table of Contents
 * [General Information](#general-information)
-* [Hand Scoring TFpeaks](#hand-scoring-tfpeaks)
+* [Hand Scoring TFσ peaks](#hand-scoring-tfpeaks)
 * [TFσ peak Detection](#tfpeak-detection)
 * [Algorithm Description](#algorithm-description)
 * [Multitaper Spectrogram](#multitaper-spectrogram )
