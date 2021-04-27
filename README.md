@@ -4,8 +4,8 @@
 
 ## Table of Contents
 * [General Information](#general-information)
-* [Hand Scoreing TFpeaks](#hand-scoring-tfpeaks)
-* [TFpeak Detection](#tfpeak-detection)
+* [Hand Scoring TFpeaks](#hand-scoring-tfpeaks)
+* [TFsigma peak Detection](#tfpeak-detection)
 * [Algorithm Description](#algorithm-description)
 * [Multitaper Spectrogram](#multitaper-spectrogram )
 * [Artifact Detection](#artifact-detection)
@@ -32,7 +32,7 @@ One of the most prominent waveform patterns observed in the sleep EEG is the spi
 <br/>
 
 
-## Hand Scoring TFpeaks
+## Hand Scoring TF\sigma peaks
 The hand_scoring_tfpeaks function can be used to manually identify TFsigma peaks on multitaper spectrograms. Running this function on EEG data opens an interface with the data spectrogram, hypnogram, and time-series signal. This interface allows, zooming, colorscale adjustment, TFpeak/event marking (bounding box creation), and saving of the TFpeak/event labels. See the function docstring to explore the hotkeys for further details.
 
 Usage:
