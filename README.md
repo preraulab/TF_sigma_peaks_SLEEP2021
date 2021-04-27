@@ -69,6 +69,15 @@ To save or load labeled TFpeaks/events, select the "Markers" dropdown from the t
 
 <br/>
 
+Matlab Toolboxes reequired for hand_scoring_TFpeaks:
+* Signal Processing Toolbox
+* Image Processing Toolbox
+* Statistics and Machine Learning Toolbox
+
+<br/>
+<br/>
+
+
 ## TFσ peak Detection
 The TF_peak_detection function uses multitaper spectrogram to identify time-frequency domain peaks. 
 
@@ -110,7 +119,7 @@ Usage:
  
 ### TFσ peak Detection Example
 The following code demostrates the usage of TF_peak_detect - 
-``
+```
 %Make sure to start parallel pool if available
 if license('test','distrib_computing_toolbox')
 	gcp;
@@ -128,6 +137,13 @@ Running the code should produce the following plot showing the data segment hypn
 
 |<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_paper_example.png" alt="spind"
 	 width="600" height="350" />|
+<br/>
+
+Matlab Toolboxes reequired for TF_peak_detection:
+* Signal Processing Toolbox
+* Statistics and Machine Learning Toolbox
+* Curve Fitting Toolbox
+
 <br/>
 <br/>
 
