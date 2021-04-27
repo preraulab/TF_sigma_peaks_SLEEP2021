@@ -35,7 +35,15 @@ Herein, we provide code for our automated detection of TFσ peaks, as well as th
 
 
 ## Hand Scoring TFσ peaks
-The hand_scoring_tfpeaks function can be used to manually identify TFσ peaks on multitaper spectrograms. Running this function on EEG data opens an interface with the data spectrogram, hypnogram, and time-series signal. This interface allows, zooming, colorscale adjustment, TFpeak/event marking (bounding box creation), and saving of the TFpeak/event labels. See the function docstring to explore the hotkeys for further details.
+The hand_scoring_tfpeaks function can be used to manually identify TFσ peaks on multitaper spectrograms. Running this function on EEG data opens an interface with the data spectrogram, hypnogram, and time-series signal. This interface allows, zooming, colorscale adjustment, TFpeak/event marking (bounding box creation), and saving of the TFpeak/event labels. 
+
+Hotkeys for interacting with scoring interface:
+* backspace/delete: delete selected bounding box
+* space: advance forward in time window (with 10% overlapping)
+* s: after pressing s, left-clicking on the spectrogram will begin marking the bounding box as a TFpeak
+* u: after pressing u, left-clicking on the spectrogram will begin marking the bounding box as an unknown event
+* p: call the zooming panel
+* c: call the colorscale adjustment panel
 
 Usage:
 ```
