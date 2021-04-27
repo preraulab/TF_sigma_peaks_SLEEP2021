@@ -60,7 +60,6 @@ The follow interface will appear and TFpeak/event scoring can begin -
 |<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
 	 width="600" height="300" />|
 
-
 To save or load labeled TFpeaks/events, select the "Markers" dropdown from the toolbar and click "Save Events" or "Load Events"
 
 <br/>
@@ -169,7 +168,6 @@ The default spectrogram parameters used by TF_peak_detection are as follow:
 * detrend_opt = 'constant'
 
 <br/>
-<br/>
 
 
 ### Artifact Detection
@@ -181,7 +179,7 @@ Usage:
 
 [artifacts, hf_artifacts, bb_artifacts, high_detrend, broad_detrend] = EEG_detect_time_domain_artifacts(data, Fs, method, hf_crit, hf_pass, bb_crit, bb_pass, smooth_duration, verbose, histogram_plot)
 ```
-### Parameter Descriptions
+#### Parameter Descriptions
 * **data** - 1 x <number of samples> vector - time series data (required)
 * **Fs** - double - sampling frequency in Hz (required)
 * **method** - char 'std' to use iterative method (default) or a strict threshold on 'MAD',defined as K*MEDIAN(ABS(A-MEDIAN(A)))
