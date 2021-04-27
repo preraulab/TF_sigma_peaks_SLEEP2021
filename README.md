@@ -8,8 +8,7 @@
 * [Hand Scoring TFσ peaks](#hand-scoring-tfpeaks)
 * [TFσ peak Detection](#tfpeak-detection)
 * [Algorithm Description](#algorithm-description)
-* [Multitaper Spectrogram](#multitaper-spectrogram )
-* [Artifact Detection](#artifact-detection)
+* [Other Processes and Parameters](#other-processes-and-paramters)
 * [Citations](#citations)
 * [Status](#status)
 * [References](#references)
@@ -157,14 +156,23 @@ Prior to k-means clustering, we excluded peaks with durations shorter than 0.3 s
 <br/>
 <br/>
 
-## Multitaper Spectrogram 
+## Other Processes and Parameters
+
+### Multitaper Spectrogram 
 The multitaper_spectrogram_release function is used by TF_peak_detection to break down the EEG signal into the time-frequency domain. More information on the multitaper spectrogram and the latest release of the function can be found [here](https://github.com/preraulab/multitaper_toolbox)
 
+The default spectrogram parameters used by TF_peak_detection are as follow:
+* frequency_range = [0, 30]
+* taper_params = [2, 3]
+* window_params = [1, 0.05]
+* min_NFFT = 2^10
+* detrend_opt = 'constant'
+
 <br/>
 <br/>
 
 
-## Artifact Detection
+### Artifact Detection
 The EEG_detect_time_domain_artifacts function is used to detect artifacts in the EEG signal data before TFpeak detection is run. 
 
 Usage:
