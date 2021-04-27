@@ -122,7 +122,25 @@ Running the code should produce the following plot showing the data segment hypn
 
 
 ## Algorithm Desctiption
+### Time-frequency event property extraction algorithm 
+The “frequency step” is based on the concept of peak prominence, which stems from geological studies [1] and measures of the height of a peak relative to the lowest contour line around it that excludes higher peaks. In essence, peak prominence computes the magnitude (height, power, amplitude) of a peak relative to a hyper-local baseline. Thus, prominence provides a better description of  EEG spectral peak magnitude than absolute power or a global baseline, accounting for instantaneous offsets in power as well as for the background 1/f slope in the frequency dimension [2]. We first estimate the multitaper spectrogram using the same parameters described above and apply the MATLAB findpeaks() function for each spectrum, estimating prominence, frequency at maxima, and bandwidth for all peaks in the frequency range 6-30 Hz. This broad range was to provide the data required to accurately compute prominence while excluding confounding effects from slow/DC activity. We then select peak within 9-17 Hz with maximal prominence, which we term the max-prominence peak for each time window. We then construct a prominence time series by concatenating prominence values of all max-prominence peaks across time windows. Time windows containing artifacts, falling outside of N2 sleep, or having no valid peak in the 9-17 Hz range were marked as missing values. Therefore, the frequency prominence time series spanned the full night, sampled at intervals of the step size (0.05 s) used in multitaper spectrogram estimation.
 
+For the “time step”, we perform peak extraction again on the prominence time series. We smooth the frequency prominence with a 0.3 s moving average window to avoid small inflection points being considered as peaks in the next step. We then apply the findpeaks() function on the smoothed time series to identify prominent peaks along the time dimension. As this second round of peak finding operates on a time series of prominence values, the computed “prominence of prominence” provided a single numerical value quantifying the distinctiveness of a time-frequency peak (local maximum). We converted the obtained (time) prominence values to the logarithmic scale due to observed log-normal distributions. 
+
+Having identified salient time-frequency peaks in spindle frequency range across the night, we use the parameters of these peaks to extract event properties. For an event detected by any method (by hand-scoring or automated detectors, in the time or time-frequency domain), we defined the scored interval using the marked onset and offset times of the event. The time-frequency peak with temporal maximum closest to the midpoint of the scored interval was assigned to the event. For a given peak in the prominence time series, with the maximum at time t, we extract the following four properties of the assigned event: 
+* Prominence = natural log of the peak prominence 
+* Duration = half-prominence width of the peak
+* Central Frequency = frequency of the max-prominence peak of the spectrum at t
+* Bandwidth = half-prominence width of the max-prominence peak of the spectrum at t
+
+If multiple peaks occurred during the event interval, the local maximum with the highest prominence was assigned. If no local maximum in the prominence time series overlapped with the scored interval (<2% for all methods and subjects), features were determined using the closest peak available (always occurred within 5 s from the event interval midpoint) based on the following rules. For an event with the event interval midpoint at tm and a corresponding peak closest to the event with its maximum at time t in the prominence time series:
+
+* Prominence = natural log of the peak prominence – (prominence at t – prominence at tm)
+* Duration = event offset time – event onset time
+* Central Frequency = frequency of the max-prominence peak of the spectrum at tm
+* Bandwidth = half-prominence width of the max-prominence peak of the spectrum at tm
+
+In summary, this algorithm identifies the most prominent, well-defined time-frequency peak, within a given time period and extracts the four associated properties. Since the only needed inputs are event onset and offset times, this algorithm is agnostic to the details of how an event is detected. Thus, properties can be extracted equitably for all methods investigated in the present study, allowing fair comparisons across time and time-frequency domains. It should be noted this approach does not explicitly handle multiple overlapping time-frequency events, however simultaneously co-occurring events are rare in the sigma range, thus making this an appropriate method in this application. 
 <br/>
 <br/>
 
