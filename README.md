@@ -28,10 +28,7 @@ Herein, we provide code for our automated detection of TFσ peaks, as well as th
 <br/>
 | <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind" width="500" height="250" />| 
 |:--:| 
-| <sup><sub>Spindles are a subset of TFσ peaks. Source: Dimitrov T, He M, Stickgold R, Prerau MJ. Sleep spindles comprise a subset of a broader class of electroencephalogram events. Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311</sup></sub> |
-
-###### testing 123
-##### testing 123
+| <sup><sub>**Spindles are a subset of TFσ peaks.** <br/>Source: Dimitrov T, He M, Stickgold R, Prerau MJ. Sleep spindles comprise a subset of a broader class of electroencephalogram events. Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311</sup></sub> |
 
 
 <br/>
