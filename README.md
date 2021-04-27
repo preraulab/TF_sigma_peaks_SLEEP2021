@@ -170,7 +170,7 @@ which should be cited for academic use of this code.
 
 
 ## Status 
-All implementations are complete and functional but may receive updates occasionally
+All implementations are complete and functional.
 
 <br/>
 <br/>
