@@ -13,13 +13,6 @@ function [ TFpeak_times, noise_peak_times, clustering_idx, clustering_prom_order
 % sacrificing some "true" TF peaks. 
 %
 % Usage: [ spindle_times ] = TF_peak_selection(candidate_signals, candidate_times, '<flag#1>',<arg#1>...'<flag#n>',<arg#n>);
-%
-%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
-%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
-%
-%   Authors: Mingjian He, Tanya Dimitrov, Michael Prerau
-%% ***********************************************************************
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % ##### Declared Inputs: [[[NEEDS UPDATES!!!]]]
 %           The following variables can be acquired from the function
@@ -134,7 +127,7 @@ switch detection_method
     case 'kmeans'
         idx = kmeans(candidate_signals, num_clusters);
         
-        %Label the class that has the highest mean prominence as TF peaks
+        % Label the class that has the highest mean prominence as TF peaks
         mean_proms = zeros(1, num_clusters);
         for ii = 1:num_clusters
             mean_proms(ii) = mean(candidate_signals(idx==ii, prominence_column));
@@ -217,7 +210,7 @@ if size(candidate_times,1) < size(candidate_times,2)
 end
 
 % make sure the specified prominence column exists
-assert(prominence_column <= size(candidate_signals,2), 'Prominence column does not exist in signals matrix.')
+assert(prominence_column <= size(candidate_signals,2), 'Prominence column number exceeds the dimension of the signals matrix.')
 
 % if 'threshold' is used, then there must be a sensible threshold_percent
 if strcmp(detection_method, 'threshold')

@@ -8,7 +8,7 @@ function [mt_spectrogram,stimes,sfreqs] = multitaper_spectrogram_release(varargi
 %   [spect,stimes,sfreqs] = multitaper_spectrogram(data, Fs, frequency_range, taper_params, window_params, min_NFFT, detrend_opt, plot_on, verbose)
 %
 %   Input:
-%   data: 1 x <number of samples> vector - time series data -- required
+%   data: 1 x <number of samples> vector - time series data-- required
 %   Fs: double - sampling frequency in Hz  -- required
 %   frequency_range: 1x2 vector - [<min frequency>, <max frequency>] (default: [0 nyquist])
 %   taper_params: 1x2 vector - [<time-halfbandwidth product>, <number of tapers>] (default: [5 9])
@@ -47,12 +47,12 @@ function [mt_spectrogram,stimes,sfreqs] = multitaper_spectrogram_release(varargi
 %   A full tutorial on the multitaper spectrogram can be found at:
 %   http://www.sleepEEG.org/multitaper
 %
-%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   Copyright 2019 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
 %   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 %   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %
-%   Authors: Michael Prerau
-%% ***********************************************************************
+%   Last modified 1/11/2019
+%% ********************************************************************
 
 % PROCESS DATA AND PARAMETERS
 

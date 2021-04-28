@@ -14,12 +14,6 @@ function [ fpeak_proms, fpeak_freqs, fpeak_bandwidths, fpeak_bandwidth_bounds, n
 %
 % Usage: [ fproms, ffreq, fwidth, x_fwidth, normalized_spectrogram ] = find_frequency_peaks(spectrogram,stimes,sfreqs,valid_time_inds,'<flag#1>',<arg#1>...<flag#n>',<arg#n>);
 %
-%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
-%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
-%
-%   Authors: Mingjian He, Tanya Dimitrov, Michael Prerau
-%% ***********************************************************************
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 % ##### Declared Inputs: [[[NEEDS UPDATES!!!]]]
 %
@@ -112,7 +106,7 @@ function [ fpeak_proms, fpeak_freqs, fpeak_bandwidths, fpeak_bandwidth_bounds, n
 fptic = tic;
 
 % Parse inputs and preparation
-[ valid_time_inds, normalized_spectrogram, peak_freq_range, find_freq_range, plot_on, verbose, findpeaks_version ] = fpeak_inputparse(spect,stimes,sfreqs,varargin{:});
+[ valid_time_inds, normalized_spectrogram, peak_freq_range, find_freq_range, plot_on, verbose, in_db, findpeaks_version ] = fpeak_inputparse(spect,stimes,sfreqs,varargin{:});
 
 % compute the frequency range to run findpeaks on
 freq_select = sfreqs>=find_freq_range(1) & sfreqs<=find_freq_range(2);
@@ -232,9 +226,9 @@ if plot_on
     
     axes(ax(1))
     if in_db
-        imagesc(stimes, sfreqs, normalized_spectrogram');
-    else
         imagesc(stimes, sfreqs, pow2db(normalized_spectrogram'));
+    else
+        imagesc(stimes, sfreqs, normalized_spectrogram');
     end
     axis xy;
     climscale;
@@ -257,7 +251,7 @@ end
 
 end
 
-function [ valid_time_inds, normalized_spectrogram, peak_freq_range, find_freq_range, plot_on, verbose, findpeaks_version ] = fpeak_inputparse(spect,stimes,sfreqs,varargin)
+function [ valid_time_inds, normalized_spectrogram, peak_freq_range, find_freq_range, plot_on, verbose, in_db, findpeaks_version ] = fpeak_inputparse(spect,stimes,sfreqs,varargin)
 %% Configure optional input arguments:
 optionalInputs = {'valid_time_inds','peak_freq_range','find_freq_range','in_db','smooth_Hz','norm_method','norm_time_inds','percent_num','local_norm_minutes','plot_on','verbose','findpeaks_version'};
 

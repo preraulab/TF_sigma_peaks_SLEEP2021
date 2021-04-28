@@ -17,12 +17,9 @@
 %      imagesc(peaks(500);
 %      climscale;
 %
-%
 %   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
 %   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 %   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
-%
-%   Authors: Michael Prerau
 %
 %   Last modified 10/23/2020
 %% ********************************************************************
@@ -31,7 +28,7 @@ function clim = climscale(hObj, ptiles, outliers)
 if nargin==0 || isempty(hObj)
     hObj=gca;
 end
-assert(isa(hObj,'matlab.graphics.primitive.Image') || isa(hObj,'matlab.graphics.axis.Axes'),['First input must be axis or image handle. Input was ' class(hObj)])
+assert(ishandle(hObj) || isa(hObj,'matlab.graphics.primitive.Image') || isa(hObj,'matlab.graphics.axis.Axes'),['First input must be axis or image handle. Input was ' class(hObj)])
 
 %Set default percentiles
 if nargin<2 || isempty(ptiles)
