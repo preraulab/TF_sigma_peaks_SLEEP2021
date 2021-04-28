@@ -8,8 +8,7 @@
 * [Hand Scoring TFσ peaks](#hand-scoring-tfpeaks)
 * [TFσ peak Detection](#tfpeak-detection)
 * [Algorithm Description](#algorithm-description)
-* [Multitaper Spectrogram](#multitaper-spectrogram )
-* [Artifact Detection](#artifact-detection)
+* [Other Processes and Parameters](#other-processes-and-paramters)
 * [Citations](#citations)
 * [Status](#status)
 * [References](#references)
@@ -26,7 +25,7 @@ Time-frequency analysis is well suited to solve this problem because it can disa
 
 Herein, we provide code for our automated detection of TFσ peaks, as well as the code to hand-score TFσ peaks from the spectrogram.
 <br/>
-| <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage.png" alt="spind" width="500" height="250" />| 
+| <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage_info.png" alt="spind" width="600" height="300" />| 
 |:--:| 
 | <sup><sub>Spindles are a subset of TFσ peaks. Traditionaly scored spindles (magenta regions) are represented as sigma range (10-16Hz) time-frequency peaks in the spectrogram (TFσ peaks) (boxed regions). While scored spindles correspond directly to TFσ peaks, there are many clear TFσ peaks that are not scored as spindles. Source: Dimitrov et. al <sup>10</sup></sup></sub> |
 
@@ -35,7 +34,15 @@ Herein, we provide code for our automated detection of TFσ peaks, as well as th
 
 
 ## Hand Scoring TFσ peaks
-The hand_scoring_tfpeaks function can be used to manually identify TFσ peaks on multitaper spectrograms. Running this function on EEG data opens an interface with the data spectrogram, hypnogram, and time-series signal. This interface allows, zooming, colorscale adjustment, TFpeak/event marking (bounding box creation), and saving of the TFpeak/event labels. See the function docstring to explore the hotkeys for further details.
+The hand_scoring_tfpeaks function can be used to manually identify TFσ peaks on multitaper spectrograms. Running this function on EEG data opens an interface with the data spectrogram, hypnogram, and time-series signal. This interface allows, zooming, colorscale adjustment, TFpeak/event marking (bounding box creation), and saving of the TFpeak/event labels. 
+
+Hotkeys for interacting with scoring interface:
+* backspace/delete: delete selected bounding box
+* space: advance forward in time window (with 10% overlapping)
+* s: after pressing s, left-clicking on the spectrogram will begin marking the bounding box as a TFpeak
+* u: after pressing u, left-clicking on the spectrogram will begin marking the bounding box as an unknown event
+* p: call the zooming panel
+* c: call the colorscale adjustment panel
 
 Usage:
 ```
@@ -45,18 +52,31 @@ hand_scoring_tfpeaks(data, Fs, staging)
 ### Hand Scoring TFσ peaks Example
 The following code shows how to load in test EEG data and run the hand_scoring_tfpeaks function - 
 ```
+%Make sure to start parallel pool if available
+if license('test','distrib_computing_toolbox')
+	gcp;
+end
+
 load('example_data/example_data.mat')  % loads in example data variables EEG, Fs, night, stage_times, stages, subject_name, t
 hand_scoring_tfpeaks(EEG, Fs, staging)
 ```
 The follow interface will appear and TFpeak/event scoring can begin - 
 <br/>
-<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
-	 width="500" height="250" />
-
+|<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
+	 width="600" height="300" />|
 
 To save or load labeled TFpeaks/events, select the "Markers" dropdown from the toolbar and click "Save Events" or "Load Events"
 
 <br/>
+
+Matlab Toolboxes reequired for hand_scoring_TFpeaks:
+* Signal Processing Toolbox
+* Image Processing Toolbox
+* Statistics and Machine Learning Toolbox
+
+<br/>
+<br/>
+
 
 ## TFσ peak Detection
 The TF_peak_detection function uses multitaper spectrogram to identify time-frequency domain peaks. 
@@ -77,7 +97,7 @@ Usage:
 * **detection stages**: vector of sleep stages in which spindles should be detected. The stage coding is - WAKE=5, REM=4, NREM1=3, NREM2=2, NREM3=1, UNDEFINED=0.  (optional keyword argument - default=[1,2,3])
 * **to_plot** - logical to plot hypnoplot, spectrogram, and bounding boxes around detected spindles on the spectrogram (optional keyword argument - default=true).
 * **verbose** - logical to output informative text to the Matlab console (optional keywork argument - default=true)
-* **spindle_freq_range** -  2 element vector specifying lower and upper frequency bounds in which spindles can be found (optional keywork argument - default=[0, Fs/2])
+* **spindle_freq_range** -  2 element vector specifying lower and upper frequency bounds in which TFpeaks can be found (optional keywork argument - default=[0, Fs/2])
 * **extract_property** - logical to output various properties of all TFpeaks found before separating into noise and signal TFpeaks. Note that if this argument is true, the process will stop before separating TFpeaks into noise and signal. (optional keywork argument - default=false) 
 * **artifact_detect** - logical to perform artifact detection on EEG before spindle detection. Note that segments identified as artifacts have their stages changed to WAKE (5). (optional keyword argument - default=true)
 * **peak_freq_range** - 2 element vector specifying range of frequencies to look for peak prominence values within (optional keyword argument - default=[9,17])
@@ -100,6 +120,11 @@ Usage:
 ### TFσ peak Detection Example
 The following code demostrates the usage of TF_peak_detect - 
 ```
+%Make sure to start parallel pool if available
+if license('test','distrib_computing_toolbox')
+	gcp;
+end
+
 load('example_data') % load the data 
 
 % run the TF_peak_detection wrapper function to detect TF peaks during
@@ -110,8 +135,15 @@ load('example_data') % load the data
 ```
 Running the code should produce the following plot showing the data segment hypnogram, spectrogram, and bounding boxes indicating TFpeaks - 
 
-<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_paper_example.png" alt="spind"
-	 width="500" height="250" />
+|<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_paper_example.png" alt="spind"
+	 width="600" height="350" />|
+<br/>
+
+Matlab Toolboxes reequired for TF_peak_detection:
+* Signal Processing Toolbox
+* Statistics and Machine Learning Toolbox
+* Curve Fitting Toolbox
+
 <br/>
 <br/>
 
@@ -149,14 +181,22 @@ Prior to k-means clustering, we excluded peaks with durations shorter than 0.3 s
 <br/>
 <br/>
 
-## Multitaper Spectrogram 
+## Other Processes and Parameters
+
+### Multitaper Spectrogram 
 The multitaper_spectrogram_release function is used by TF_peak_detection to break down the EEG signal into the time-frequency domain. More information on the multitaper spectrogram and the latest release of the function can be found [here](https://github.com/preraulab/multitaper_toolbox)
 
-<br/>
+The default spectrogram parameters used by TF_peak_detection are as follow:
+* frequency_range = [0, 30]  % Hz
+* taper_params = [2, 3]
+* window_params = [1, 0.05]  % Seconds
+* min_NFFT = 2^10
+* detrend_opt = 'constant'
+
 <br/>
 
 
-## Artifact Detection
+### Artifact Detection
 The EEG_detect_time_domain_artifacts function is used to detect artifacts in the EEG signal data before TFpeak detection is run. 
 
 Usage:
@@ -165,7 +205,7 @@ Usage:
 
 [artifacts, hf_artifacts, bb_artifacts, high_detrend, broad_detrend] = EEG_detect_time_domain_artifacts(data, Fs, method, hf_crit, hf_pass, bb_crit, bb_pass, smooth_duration, verbose, histogram_plot)
 ```
-### Parameter Descriptions
+#### Parameter Descriptions
 * **data** - 1 x <number of samples> vector - time series data (required)
 * **Fs** - double - sampling frequency in Hz (required)
 * **method** - char 'std' to use iterative method (default) or a strict threshold on 'MAD',defined as K*MEDIAN(ABS(A-MEDIAN(A)))
