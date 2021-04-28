@@ -112,7 +112,7 @@ Usage:
 * **smooth_sec** - double in seconds to specify window over which average smoothing of time-domain prominance curve occurs (optional keyword argument - default=0.3)
 * **min_peak_distance_sec** - double in seconds to spefify the minimum peak width required for a peak to be detected (optional keywork argument - default=0.3)
 * **detection_method** - char specifying the method of separating noise peaks from signal peaks. Options are 'kmeans' and 'threshold' (optional keyword argument - default='kmeans')
-* **bandwidth_cut** - (optional keyword argument - default=true)
+* **bandwidth_cut** - all spindles with a bandwidth below half of the spectral resolution (default: 4Hz) will be rejected (optional keyword argument - default=true)
 * **num_clusters** - integer to specify the number of clusters used in kmeans clustering to cluster noise peaks from signal peaks. Note that only the cluster with the highest peak prominance will be selected as signal and the other clusters will be specfied as noise. (optional keyword argument - default=2)
 * **threshold_percentile** - double between 0 and 100 specifying the percentile cutoff of candidate TFpeaks prominance values to use in distiguishing between noise and signal TFpeaks. Used only if detection_method is 'threshold'. (optional ketwork argument - default=75)
 * **MT_freq_max** - double in Hz specifying the maximum frequency to use when computing the multitaper spectrogram. (optional keyword argument - default=30)
