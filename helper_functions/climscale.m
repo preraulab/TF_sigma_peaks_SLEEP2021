@@ -1,23 +1,22 @@
 %CLIMSCALE Rescale the color limits of an image to remove outliers with percentiles
 %
 %   Usage:
-%   Direct input:
 %       clim = climscale(hObj, ptiles, outliers)
 %
 %   Input:
-%   hObj: handle to axis or image object -- required
-%   ptiles: 1x2 double - scaling percentiles (default: [5 98])
-%   outliers: logical - remove outliers prior to scaling using isoutlier (default: true)
+%       hObj: handle to axis or image object -- required
+%       ptiles: 1x2 double - scaling percentiles (default: [5 98])
+%       outliers: logical - remove outliers prior to scaling using isoutlier (default: true)
 %
 %   Output:
-%   clims: 1x2 double - scaled caxis limits
+%       clims: 1x2 double - scaled caxis limits
 %
 %   Example:
 %      ax = gca;
 %      imagesc(peaks(500);
 %      climscale;
 %
-%   Copyright 2020 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   Copyright 2021 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
 %   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 %   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %

@@ -77,7 +77,9 @@
 %             axs=figdesign('handles');
 %             linkaxes(axs,'x');
 %
-%   Copyright 2013 Michael J. Prerau, Ph.D.
+%   Copyright 2021 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %
 %   last modified 05/15/2013
 %********************************************************************

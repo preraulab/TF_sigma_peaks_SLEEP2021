@@ -27,7 +27,9 @@ function sh=hypnoplot(varargin)
 %         figure;
 %         hypnoplot(hyp_times, hyp_stages);
 %
-%   Copyright 2018 Michael J. Prerau, Ph.D.
+%   Copyright 2021 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
 %
 %   Last modified 11/12/2018
 %% ********************************************************************

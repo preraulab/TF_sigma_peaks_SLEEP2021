@@ -1,4 +1,26 @@
-function clim_h=clims(ax)
+function clim_h = clims(ax)
+% CLIMS - Launches a gui for scaline color axes
+%
+%   Usage:
+%       clim_h = clims(ax)
+%
+%   Input:
+%       ax: handle to axis -- required (default: gca)
+%
+%   Output:
+%       clim_h: handle to the clim figure
+%
+%   Example:
+%      ax = gca;
+%      imagesc(peaks(500);
+%      clims;
+%
+%
+%   Copyright 2021 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%********************************************************************
+
 if nargin==0
     ax=gca;
 end

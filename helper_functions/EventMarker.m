@@ -1,5 +1,13 @@
 classdef EventMarker < handle
-    
+% EVENTMARKER - Class for EventMarker
+%
+%   Copyright 2021 Michael J. Prerau, Ph.D. - http://www.sleepEEG.org
+%   This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+%   (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+%
+%   Last modifed: 04/28/2021
+%********************************************************************
+
     %%%%%%%%%%%%%%%% public properties %%%%%%%%%%%%%%%%%%
     properties (Access = public)
         main_ax %axis with markers
