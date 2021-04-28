@@ -25,9 +25,13 @@ Time-frequency analysis is well suited to solve this problem because it can disa
 
 Herein, we provide code for our automated detection of TFσ peaks, as well as the code to hand-score TFσ peaks from the spectrogram.
 <br/>
-| <img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage_info.png" alt="spind" width="600" height="300" />| 
-|:--:| 
-| <sup><sub>Spindles are a subset of TFσ peaks. Traditionaly scored spindles (magenta regions) are represented as sigma range (10-16Hz) time-frequency peaks in the spectrogram (TFσ peaks) (boxed regions). While scored spindles correspond directly to TFσ peaks, there are many clear TFσ peaks that are not scored as spindles. Source: Dimitrov et. al <sup>10</sup></sup></sub> |
+<p align="center"> 
+<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeaks_gitImage_info.png" alt="spind" width="600" height="300" />| 
+</p>
+
+<p align="center"> 
+<sup><sub>Spindles are a subset of TFσ peaks. Traditionaly scored spindles (magenta regions) are represented as sigma range (10-16Hz) time-frequency peaks in the spectrogram (TFσ peaks) (boxed regions). While scored spindles correspond directly to TFσ peaks, there are many clear TFσ peaks that are not scored as spindles. Source: Dimitrov et. al <sup>10</sup></sup></sub> 
+</p>
 
 <br/>
 <br/>
@@ -62,9 +66,10 @@ hand_scoring_tfpeaks(EEG, Fs, staging)
 ```
 The follow interface will appear and TFpeak/event scoring can begin - 
 <br/>
-|<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
-	 width="600" height="300" />|
-
+<p align="center"> 
+<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_handscore_spindles.png" alt="spind"
+	 width="600" height="300" />
+</p>
 To save or load labeled TFpeaks/events, select the "Markers" dropdown from the toolbar and click "Save Events" or "Load Events"
 
 <br/>
@@ -135,8 +140,10 @@ load('example_data') % load the data
 ```
 Running the code should produce the following plot showing the data segment hypnogram, spectrogram, and bounding boxes indicating TFpeaks - 
 
+<p align="center"> 
 |<img src="https://prerau.bwh.harvard.edu/spindle_view/TFpeak_paper_example.png" alt="spind"
 	 width="600" height="350" />|
+</p> 
 <br/>
 
 Matlab Toolboxes reequired for TF_peak_detection:
