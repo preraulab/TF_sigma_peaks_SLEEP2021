@@ -8,8 +8,12 @@ function [ spindle_table, spectrogram_used, fpeak_proms, fpeak_properties, tpeak
 %% ***********************************************************************
 %% ADD HEADER ***
 TF_peak_tic = tic;
+
 %% Parse input variables
-if iscell(sleep_stages); sleep_stages = convert_staging_format(sleep_stages); end
+if iscell(sleep_stages) 
+    sleep_stages = convert_staging_format(sleep_stages); 
+end
+
 [ input_arguments, input_flags ] = TF_peak_inputparse(EEG,Fs,sleep_stages,varargin{:});
 eval(['[', sprintf('%s ', input_flags{:}), '] = deal(input_arguments{:});']);
 
@@ -81,6 +85,7 @@ else
     % valid_spindles = spindle_table.Freq_Low >= spindle_freq_range(1) & spindle_table.Freq_High <= spindle_freq_range(2);
     valid_spindles = spindle_table.Freq_Central >= spindle_freq_range(1) & spindle_table.Freq_Central <= spindle_freq_range(2);
     spindle_table(~valid_spindles,:) = [];
+    
     if verbose
         disp(['Number of spindles dropped due to exceeding bandwidth bounds: ', num2str(sum(~valid_spindles))])
     end
@@ -120,6 +125,7 @@ sleep_stages(1,2) = stages(1);
 
 prev = stages(1);
 index = 2;
+
 for ii = 2:length(stage_times)
     if prev ~= stages(ii)
         sleep_stages(index,1) = stage_times(ii);
@@ -184,6 +190,7 @@ valid_MT_detrend = {'linear','constant','off'};
 addRequired(p,'EEG', @isvector);
 addRequired(p,'Fs', @isnumeric);
 addRequired(p,'sleep_stages', check_sleep_stages);
+
 % TF_peak_detection wrapper parameters
 addOptional(p,'detection_stages',default_detection_stages, check_detection_stages);
 addOptional(p,'to_plot',default_to_plot, @islogical);
@@ -191,20 +198,24 @@ addOptional(p,'verbose',default_verbose, @islogical);
 addOptional(p,'spindle_freq_range',default_spindle_freq_range, check_freq_range);
 addOptional(p,'extract_property',default_extract_property, @islogical);
 addOptional(p,'artifact_detect',default_artifact_detect, @islogical);
+
 % find frequency peaks parameters
 addOptional(p,'peak_freq_range',default_peak_freq_range, check_freq_range);
 addOptional(p,'find_freq_range',default_find_freq_range, check_freq_range);
 addOptional(p,'in_db',default_in_db, @islogical);
 addOptional(p,'smooth_Hz',default_smooth_Hz, check_smooth_Hz);
+
 % find time peaks parameters
 addOptional(p,'smooth_sec',default_smooth_sec, @isnumeric);
 addOptional(p,'MinPeakWidth_sec',default_MinPeakWidth_sec, @isnumeric);
 addOptional(p,'MinPeakDistance_sec',default_MinPeakDistance_sec, @isnumeric);
+
 % TF_peak_selection parameters
 addOptional(p,'detection_method',default_detection_method, @isstring);
 addOptional(p,'bandwidth_cut',default_bandwidth_cut, @logical);
 addOptional(p,'num_clusters',default_num_clusters, @isinteger);
 addOptional(p,'threshold_percentile',default_threshold_percentile, check_threshold_percentile);
+
 % Multitaper parameters
 addOptional(p,'MT_freq_max',default_MT_freq_max, @isnumeric);
 addOptional(p,'MT_taper',default_MT_taper, check_MT_vect);
@@ -225,17 +236,20 @@ input_flags = fieldnames(p.Results);df = datenum([0 0 0 0 0 1]);
 % handle the validatestring inputs
 detection_method_index = find(cellfun(@(x) strcmp(x, 'detection_method'), input_flags)==1);
 input_arguments{detection_method_index} = validatestring(input_arguments{detection_method_index}, valid_detection_method);
+
 MT_detrend_index = find(cellfun(@(x) strcmp(x, 'MT_detrend'), input_flags)==1);
 input_arguments{MT_detrend_index} = validatestring(input_arguments{MT_detrend_index}, valid_MT_detrend);
 
 % validity check
 threshold_percentile_index = find(cellfun(@(x) strcmp(x, 'threshold_percentile'), input_flags)==1);
+
 if input_arguments{threshold_percentile_index}<1 && strcmp(input_arguments{detection_method_index}, 'threshold')
     warning('The current threshold percentile is <1. If this was intentional disregard this message. Otherwise use a percentile between 1 and 100.');
 end
 
 % set the default find_freq_range
 find_freq_range_index = find(cellfun(@(x) strcmp(x, 'find_freq_range'), input_flags)==1);
+
 if isempty(input_arguments{find_freq_range_index})
     peak_freq_range = input_arguments{find(cellfun(@(x) strcmp(x, 'peak_freq_range'), input_flags)==1)};
     MT_taper = input_arguments{find(cellfun(@(x) strcmp(x, 'MT_taper'), input_flags)==1)};
@@ -255,9 +269,11 @@ end
 % smoothing in find_frequency_peaks shouldn't be wider than frequency range
 smooth_Hz_index = find(cellfun(@(x) strcmp(x, 'smooth_Hz'), input_flags)==1);
 peak_freq_range_index = find(cellfun(@(x) strcmp(x, 'peak_freq_range'), input_flags)==1);
+
 if input_arguments{smooth_Hz_index} > 0
     warning('Direct smoothing in frequency domain is not recommended. Consider using multitaper parameters with wider spectral resolution to achieve spectral smoothing.')
 end
+
 assert(input_arguments{smooth_Hz_index} <= diff(input_arguments{peak_freq_range_index}), 'Smoothing is wider than the frequency range for detecting frequency peaks.')
 
 end
