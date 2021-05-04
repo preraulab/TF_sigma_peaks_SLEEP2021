@@ -12,5 +12,5 @@ load('example_data') % load the data
 % run the TF_peak_detection wrapper function to detect TF peaks during
 % NREM2 sleep, with TF peak central frequencies confined to 10-16Hz
 % Note: consider using clims.m to adjust color scale
-[ TFpeaks_table, spectrogram_used, fpeak_proms, fpeak_properties, tpeak_properties ] = TF_peak_detection(EEG, Fs, [stage_times; stages],...
+[ TFpeaks_table, spectrogram_used, fpeak_proms, fpeak_properties, tpeak_properties ] = TF_peak_detection(EEG, Fs, [stage_times; stages]',...
         'to_plot',true, 'spindle_freq_range',[10,16], 'detection_stages',[2]);
