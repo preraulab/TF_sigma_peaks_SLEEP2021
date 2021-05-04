@@ -1,21 +1,21 @@
 # TF_sigma_peaks_SLEEP2021
 ### This is the repository for the code referenced in: 
-> Dimitrov T, He M, Stickgold R, Prerau MJ. [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.
+> Tanya Dimitrov, Mingjian He, Robert Stickgold, Michael J Prerau, [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind_Dimitrov.pdf), Sleep, 2021;, zsab099, https://doi.org/10.1093/sleep/zsab099
 --- 
 
 ## Table of Contents
 * [General Information](#general-information)
-* [Hand Scoring TFσ peaks](#hand-scoring-tfpeaks)
-* [TFσ peak Detection](#tfpeak-detection)
+* [Hand Scoring TFσ peaks](#hand-scoring-tfσ-peaks)
+* [TFσ peak Detection](#tfσ-peak-detection)
 * [Algorithm Description](#algorithm-description)
-* [Other Processes and Parameters](#other-processes-and-paramters)
+* [Other Processes and Parameters](#other-processes-and-parameters)
 * [Citations](#citations)
 * [Status](#status)
 * [References](#references)
 
 ## General Information
 The code in this repository is companion to the paper:
-> Dimitrov T, He M, Stickgold R, Prerau MJ. [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind.pdf). Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.
+> Tanya Dimitrov, Mingjian He, Robert Stickgold, Michael J Prerau, [Sleep spindles comprise a subset of a broader class of electroencephalogram events](https://prerau.bwh.harvard.edu/publications/sleep_2021_spind_Dimitrov.pdf), Sleep, 2021;, zsab099, https://doi.org/10.1093/sleep/zsab099
 
 One of the most prominent waveform patterns observed in the sleep EEG is the spindle, originally observed as waxing-waning 14 Hz oscillatory bursts in the EEG<sup>1</sup>. Spindles have garnered substantial attention through numerous studies linking spindle activity to memory consolidation and neural plasticity during sleep <sup>2,3</sup>, as wellas recent studies associating deviations in spindle activity and morphology with aging <sup>4</sup>, Alzheimer’s disease <sup>5</sup>, epilepsy <sup>6</sup>, schizophrenia <sup>7</sup>, and autism <sup>8</sup>. 
 
@@ -155,7 +155,7 @@ Matlab Toolboxes reequired for TF_peak_detection:
 <br/>
 
 
-## Algorithm Desctiption
+## Algorithm Description
 ### Time-frequency Peak Identifcation Algorithm
 In order to extract TFσ peaks from the spectrogram, we developed a two step procedure that isolates well-formed peaks in the time-frequency domain spectrogram. The first step is the "frequency step", which finds clear peaks in power from each individual spectrum in the spectrogram. The second step is the "time step", which tracks the prominence of the extracted spectral peaks found over time and finds temporal peak.
 
@@ -231,7 +231,7 @@ Usage:
 
 ## Citations
 The code contained in this repository is companion to the paper:  
-> Dimitrov T, He M, Stickgold R, Prerau MJ. Sleep spindles comprise a subset of a broader class of electroencephalogram events. Sleep. 2021 Apr 15:zsab099. doi: 10.1093/sleep/zsab099. Epub ahead of print. PMID: 33857311.
+> Tanya Dimitrov, Mingjian He, Robert Stickgold, Michael J Prerau, Sleep spindles comprise a subset of a broader class of electroencephalogram events, Sleep, 2021;, zsab099, https://doi.org/10.1093/sleep/zsab099
 
 which should be cited for academic use of this code.  
 
