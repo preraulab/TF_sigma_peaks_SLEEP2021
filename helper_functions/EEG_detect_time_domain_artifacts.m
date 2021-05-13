@@ -77,167 +77,167 @@ if nargin < 10 || isempty(histogram_plot)
     histogram_plot = false;
 end
 
-disp('Old version of artifact detector is now deprecated. Internal passing to call detect_artifacts.m')
-artifacts = detect_artifacts(data, Fs, method, hf_crit, hf_pass, bb_crit, bb_pass, smooth_duration, ...
-                                                                  verbose, histogram_plot);
-hf_artifacts = [];
-bb_artifacts = []; 
-high_detrend = []; 
-broad_detrend = [];
+% disp('Old version of artifact detector is now deprecated. Internal passing to call detect_artifacts.m')
+% artifacts = detect_artifacts(data, Fs, method, hf_crit, hf_pass, bb_crit, bb_pass, smooth_duration, ...
+%                                                                   verbose, histogram_plot);
+% hf_artifacts = [];
+% bb_artifacts = []; 
+% high_detrend = []; 
+% broad_detrend = [];
 
-% 
-% switch lower(method)
-%     case {'median', 'std'}
-%         mstring = 'STDs';
-%     case {'outlier', 'mad'}
-%         mstring = 'MADs';
-%     otherwise
-%         error('Bad method');
-% end
-% 
-% if verbose
-%     disp('Performing artifact detection:')
-%     disp(['     High Frequency Criterion: ' num2str(hf_crit) ' ' mstring ' above the mean']);
-%     disp(['     High Frequency Passband: ' num2str(hf_pass) ' Hz']);
-%     disp(['     Broadband Criterion: ' num2str(bb_crit) ' ' mstring ' above the mean']);
-%     disp(['     Broadband Passband: ' num2str(bb_pass) ' Hz']);
-%     disp('    ');
-% end
-% 
-% %% Create filters
-% hpFilt_high = designfilt('highpassiir','FilterOrder',8, ...
-%     'PassbandFrequency',hf_pass,'PassbandRipple',0.2, ...
-%     'SampleRate',Fs);
-% 
-% hpFilt_broad = designfilt('highpassiir','FilterOrder',8, ...
-%     'PassbandFrequency',bb_pass,'PassbandRipple',0.2, ...
-%     'SampleRate',Fs);
-% 
-% %% Get bad indicies
-% %Get bad indices
-% bad_inds = (isnan(data) | isinf(data) | find_flat(data));
-% 
-% %Interpolate big gaps in data
-% t = 1:length(data);
-% data_fixed = interp1([0, t(~bad_inds), length(data)+1], [0; data(~bad_inds); 0], t)';
-% 
-% %% Get high frequency artifacts
-% [ hf_artifacts, high_detrend ] = compute_artifacts(hpFilt_high, hf_crit, data_fixed, smooth_duration, Fs, bad_inds, verbose,...
-%     'high frequency', histogram_plot, method);
-% 
-% %% Get broad band frequency artifacts
-% [ bb_artifacts, broad_detrend ] = compute_artifacts(hpFilt_broad, bb_crit, data_fixed, smooth_duration, Fs, bad_inds, verbose,...
-%     'broadband frequency', histogram_plot, method);
-% 
-% %% Join artifacts from different frequency bands 
-% artifacts = hf_artifacts | bb_artifacts;
-% % sanity check before outputting
-% assert(length(artifacts) == length(data), 'Data vector length is inconsistent. Please check.')
-% 
-% 
-% %Compute zscore but robust to NAN vlaues
-% function z = nanzscore(x)
-% z = x - nanmedian(x);
-% z = z ./ nanstd(z);
-% 
-% %Find all the flat areas in the data
-% function binds = find_flat(data, min_size)
-% if nargin<2
-%     min_size = 100;
-% end
-% 
-% %Get consecutive values equal values
-% [clen, cind] = getchunks(data);
-% 
-% %Return indices
-% if isempty(clen)
-%     inds = [];
-% else
-%     size_inds = clen>=min_size;
-%     clen = clen(size_inds);
-%     cind = cind(size_inds);
-%     
-%     flat_inds = cell(1,length(clen));
-%     
-%     for ii = 1:length(clen)
-%         flat_inds{ii} = cind(ii):(cind(ii)+(clen(ii)-1));
-%     end
-%     
-%     inds = cat(2,flat_inds{:});
-% end
-% 
-% binds = false(size(data));
-% binds(inds) = true;
-% 
-% function [ detected_artifacts, y_detrend ] = compute_artifacts(filter_coeff, crit, data_fixed, smooth_duration, Fs, bad_inds, verbose, verbosestring, histogram_plot, method)
-% %% Get artifacts for a particular frequency band
-% 
-% %Perform a high pass filter
-% filt_data = filtfilt(filter_coeff, data_fixed);
-% 
-% %Look at the data envelope
-% y_hilbert = abs(hilbert(filt_data));
-% 
-% %Smooth data
-% y_smooth = movmean(y_hilbert, smooth_duration*Fs);
-% 
-% % We should smooth then take log
-% y_log = log(y_smooth);
-% 
-% %Spline detrend data
-% y_detrend = spline_detrend(y_log, Fs, [], 300)';
-% 
-% % Set bad indices to nan before z-scoring
-% y_signal = y_detrend;
-% y_signal(bad_inds) = nan;
-% 
-% %Take z-score
-% y_signal = nanzscore(y_signal);
-% 
-% if verbose
-%     num_iters = 1;
-%     disp(['Running ', verbosestring, ' detection...']);
-% end
-% 
-% if histogram_plot
-%     figure
-%     set(gca,'nextplot','replacechildren');
-%     histogram(y_signal,100);
-%     title(['Iteration: ' num2str(num_iters)]);
-%     pause(.5)
-% end
-% 
-% switch lower(method)
-%     case {'median', 'std'}
-%         %Keep removing until all values under criterion
-%         while any(abs(y_signal)>crit)
-%             y_signal(abs(y_signal)>crit) = nan;
-%             
-%             y_signal = nanzscore(y_signal);
-%             
-%             if verbose
-%                 num_iters = num_iters + 1;
-%             end
-%             
-%             if histogram_plot
-%                 histogram(y_signal,100);
-%                 title(['Iteration: ' num2str(num_iters)]);
-%                 pause(.5)
-%             end
-%         end
-%         
-%         if verbose
-%             disp(['     Ran ' num2str(num_iters) ' iterations']);
-%         end
-%     case {'outlier', 'mad'}
-%         y_signal(isoutlier(y_signal,'thresholdfactor',crit)) = nan;
-%         
-%         if histogram_plot
-%             histogram(y_signal,100);
-%             title('Outliers Removed');
-%         end
-%     otherwise
-%         error('Invalid method');
-% end
-% 
-% detected_artifacts = isnan(y_signal);
+
+switch lower(method)
+    case {'median', 'std'}
+        mstring = 'STDs';
+    case {'outlier', 'mad'}
+        mstring = 'MADs';
+    otherwise
+        error('Bad method');
+end
+
+if verbose
+    disp('Performing artifact detection:')
+    disp(['     High Frequency Criterion: ' num2str(hf_crit) ' ' mstring ' above the mean']);
+    disp(['     High Frequency Passband: ' num2str(hf_pass) ' Hz']);
+    disp(['     Broadband Criterion: ' num2str(bb_crit) ' ' mstring ' above the mean']);
+    disp(['     Broadband Passband: ' num2str(bb_pass) ' Hz']);
+    disp('    ');
+end
+
+%% Create filters
+hpFilt_high = designfilt('highpassiir','FilterOrder',8, ...
+    'PassbandFrequency',hf_pass,'PassbandRipple',0.2, ...
+    'SampleRate',Fs);
+
+hpFilt_broad = designfilt('highpassiir','FilterOrder',8, ...
+    'PassbandFrequency',bb_pass,'PassbandRipple',0.2, ...
+    'SampleRate',Fs);
+
+%% Get bad indicies
+%Get bad indices
+bad_inds = (isnan(data) | isinf(data) | find_flat(data));
+
+%Interpolate big gaps in data
+t = 1:length(data);
+data_fixed = interp1([0, t(~bad_inds), length(data)+1], [0; data(~bad_inds); 0], t)';
+
+%% Get high frequency artifacts
+[ hf_artifacts, high_detrend ] = compute_artifacts(hpFilt_high, hf_crit, data_fixed, smooth_duration, Fs, bad_inds, verbose,...
+    'high frequency', histogram_plot, method);
+
+%% Get broad band frequency artifacts
+[ bb_artifacts, broad_detrend ] = compute_artifacts(hpFilt_broad, bb_crit, data_fixed, smooth_duration, Fs, bad_inds, verbose,...
+    'broadband frequency', histogram_plot, method);
+
+%% Join artifacts from different frequency bands 
+artifacts = hf_artifacts | bb_artifacts;
+% sanity check before outputting
+assert(length(artifacts) == length(data), 'Data vector length is inconsistent. Please check.')
+
+
+%Compute zscore but robust to NAN vlaues
+function z = nanzscore(x)
+z = x - nanmedian(x);
+z = z ./ nanstd(z);
+
+%Find all the flat areas in the data
+function binds = find_flat(data, min_size)
+if nargin<2
+    min_size = 100;
+end
+
+%Get consecutive values equal values
+[clen, cind] = getchunks(data);
+
+%Return indices
+if isempty(clen)
+    inds = [];
+else
+    size_inds = clen>=min_size;
+    clen = clen(size_inds);
+    cind = cind(size_inds);
+    
+    flat_inds = cell(1,length(clen));
+    
+    for ii = 1:length(clen)
+        flat_inds{ii} = cind(ii):(cind(ii)+(clen(ii)-1));
+    end
+    
+    inds = cat(2,flat_inds{:});
+end
+
+binds = false(size(data));
+binds(inds) = true;
+
+function [ detected_artifacts, y_detrend ] = compute_artifacts(filter_coeff, crit, data_fixed, smooth_duration, Fs, bad_inds, verbose, verbosestring, histogram_plot, method)
+%% Get artifacts for a particular frequency band
+
+%Perform a high pass filter
+filt_data = filtfilt(filter_coeff, data_fixed);
+
+%Look at the data envelope
+y_hilbert = abs(hilbert(filt_data));
+
+%Smooth data
+y_smooth = movmean(y_hilbert, smooth_duration*Fs);
+
+% We should smooth then take log
+y_log = log(y_smooth);
+
+%Spline detrend data
+y_detrend = spline_detrend(y_log, Fs, [], 300)';
+
+% Set bad indices to nan before z-scoring
+y_signal = y_detrend;
+y_signal(bad_inds) = nan;
+
+%Take z-score
+y_signal = nanzscore(y_signal);
+
+if verbose
+    num_iters = 1;
+    disp(['Running ', verbosestring, ' detection...']);
+end
+
+if histogram_plot
+    figure
+    set(gca,'nextplot','replacechildren');
+    histogram(y_signal,100);
+    title(['Iteration: ' num2str(num_iters)]);
+    pause(.5)
+end
+
+switch lower(method)
+    case {'median', 'std'}
+        %Keep removing until all values under criterion
+        while any(abs(y_signal)>crit)
+            y_signal(abs(y_signal)>crit) = nan;
+            
+            y_signal = nanzscore(y_signal);
+            
+            if verbose
+                num_iters = num_iters + 1;
+            end
+            
+            if histogram_plot
+                histogram(y_signal,100);
+                title(['Iteration: ' num2str(num_iters)]);
+                pause(.5)
+            end
+        end
+        
+        if verbose
+            disp(['     Ran ' num2str(num_iters) ' iterations']);
+        end
+    case {'outlier', 'mad'}
+        y_signal(isoutlier(y_signal,'thresholdfactor',crit)) = nan;
+        
+        if histogram_plot
+            histogram(y_signal,100);
+            title('Outliers Removed');
+        end
+    otherwise
+        error('Invalid method');
+end
+
+detected_artifacts = isnan(y_signal);
