@@ -1,0 +1,39 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "TF_sigma_peaks_SLEEP2021"
+abstract: "MATLAB toolbox for hand-scoring and automated detection of time-frequency sigma peaks (TFσ peaks) in the sleep EEG, companion to Dimitrov et al., Sleep 2021."
+authors:
+  - family-names: Dimitrov
+    given-names: Tanya
+  - family-names: He
+    given-names: Mingjian
+    orcid: "https://orcid.org/0000-0002-6688-8693"
+  - family-names: Prerau
+    given-names: Michael J.
+    name-suffix: Ph.D.
+    affiliation: "Prerau Laboratory, Brigham and Women's Hospital, Harvard Medical School"
+    orcid: "https://orcid.org/0000-0002-9010-5273"
+type: software
+license: CC-BY-NC-SA-4.0
+url: "https://github.com/preraulab/TF_sigma_peaks_SLEEP2021"
+repository-code: "https://github.com/preraulab/TF_sigma_peaks_SLEEP2021"
+preferred-citation:
+  type: article
+  title: "Sleep spindles comprise a subset of a broader class of electroencephalogram events"
+  authors:
+    - family-names: Dimitrov
+      given-names: Tanya
+    - family-names: He
+      given-names: Mingjian
+      orcid: "https://orcid.org/0000-0002-6688-8693"
+    - family-names: Stickgold
+      given-names: Robert
+    - family-names: Prerau
+      given-names: Michael J.
+      orcid: "https://orcid.org/0000-0002-9010-5273"
+  journal: "Sleep"
+  year: 2021
+  volume: 44
+  issue: 9
+  start: zsab099
+  doi: "10.1093/sleep/zsab099"
